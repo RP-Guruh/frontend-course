@@ -12,6 +12,7 @@ const config = {
   
   theme: {
     extend: {
+      
       colors: {
         // flowbite-svelte
         customWhite: '#F6F8FD',
