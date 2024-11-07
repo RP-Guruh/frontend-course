@@ -57,6 +57,7 @@
 <Navbar
   let:hidden
   let:toggle
+  open={true}
   class="absolute top-0 left-0 w-full p-6 bg-customeBlue bg-opacity-10"
 >
   <!-- Brand Logo -->
@@ -68,19 +69,34 @@
   </NavBrand>
 
   <!-- Hamburger Menu for Mobile -->
-  <NavHamburger on:click={toggle} />
+  <NavHamburger on:click={toggle} class="text-white" />
 
   <!-- Navigation Links -->
-  <NavUl {hidden}>
-    <NavLi href="/" class="navli">
-      <span class="limenu">Home</span>
-    </NavLi>
-    <NavLi class="cursor-pointer">
-      <span class="limenu">Browse</span>
-      <ChevronDownOutline
-        class="w-6 h-6 ms-2 text-white dark:text-white inline"
-      />
-    </NavLi>
+
+  <NavUl
+    {hidden}
+    activeClass="active"
+    ulClass="lg:bg-transparent bg-customeBlue flex flex-col p-4 mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
+  >
+    <a
+      href="/"
+      class="
+        block py-2 pe-4 ps-3 md:p-0 rounded limenu hover-mobile
+      "
+    >
+      Home
+    </a>
+
+    <a
+      href="/"
+      class="
+          block py-2 pe-4 ps-3 md:p-0 rounded limenu hover-mobile
+        "
+    >
+      Browse
+      <ChevronDownOutline class="w-6 h-6 ms-2 limenu hover-mobile inline" />
+    </a>
+
     <!-- Mega Menu Dropdown -->
     <MegaMenu class="bg-customeBlue absolute z-10 " full items={menu2} let:item>
       <a
@@ -99,12 +115,17 @@
         </span>
       </a>
     </MegaMenu>
-    <NavLi href="#">
-      <span class="limenu">Become Instructor</span>
-    </NavLi>
+    <a
+      href="/"
+      class="
+      block py-2 pe-4 ps-3 md:p-0 rounded limenu hover-mobile
+    "
+    >
+      Become Instructor
+    </a>
     <NavLi>
       <!-- Right-side Buttons (Login & Sign Up) -->
-      <div class="flex md:order-2 space-x-2 -mt-2">
+      <div class="flex md:order-2 space-x-2 mt-2 lg:-mt-2 btn-lgn-signup">
         <Button size="sm" style="background-color: #2447F9;">
           <span class="login">Login</span>
         </Button>
@@ -123,5 +144,35 @@
     font-style: normal;
     color: white;
     font-size: 16px;
+  }
+
+  .btn-lgn-signup {
+    font-family: "Poppins", serif;
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .limenu {
+      font-family: "Poppins", serif;
+      font-weight: bold;
+      font-style: normal;
+      color: white;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .hover-mobile:hover {
+        background-color: #f3f4f6; /* warna background ketika di-hover di mobile */
+        color: #181230; /* warna teks ketika di-hover di mobile */
+      }
+    }
+
+    /* Nonaktifkan hover di desktop */
+    @media (min-width: 768px) {
+      .hover-mobile:hover {
+        background-color: transparent;
+        color: inherit;
+      }
+    }
   }
 </style>
