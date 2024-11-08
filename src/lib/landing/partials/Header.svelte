@@ -4,7 +4,7 @@
     import bg3 from "$lib/assets/31701.jpg";
     import ufo from "$lib/assets/ufo.png";
     import rocket from "$lib/assets/rocket.png";
-  
+    import rocket2 from "$lib/assets/rb_25930.png";
     import HeroSection from "$lib/landing/partials/HeroSection.svelte";
     import Navbar from "./Navbar.svelte";
 

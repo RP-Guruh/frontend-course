@@ -3,12 +3,14 @@
   import Testimonials from "$lib/landing/partials/Testimonials.svelte";
   import TopTopic from "$lib/landing/partials/TopTopic.svelte"; 
   import Footer from "$lib/landing/partials/Footer.svelte"; 
-  import Suscribe from "$lib/landing/partials/Suscribe.svelte";
+  import Subscribe from "$lib/landing/partials/Subscribe.svelte";
+ 
 </script>
 
 <Header />
+
 <TopTopic />
 <Testimonials />
-<Suscribe />
+<Subscribe />
 <Footer />
 

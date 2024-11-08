@@ -1,6 +1,9 @@
 <script>
   import logo from "$lib/assets/logo.png";
   import { ChevronDownOutline } from "flowbite-svelte-icons";
+  import bg3 from "$lib/assets/31701.jpg";
+  import Student from "$lib/assets/student.png";
+  import Teacher from "$lib/assets/teacher.png";
   import {
     Navbar,
     NavBrand,
@@ -10,6 +13,16 @@
     MegaMenu,
     Button,
   } from "flowbite-svelte";
+  import { Drawer, CloseButton, Label, Input, Textarea } from 'flowbite-svelte';
+  import { UserSolid, LockOpenSolid, CalendarEditSolid } from 'flowbite-svelte-icons';
+  import { sineIn } from 'svelte/easing';
+
+  let hidden4 = true;
+  let transitionParams = {
+    x: -320,
+    duration: 500,
+    easing: sineIn
+  };
 
   let menu2 = [
     {
@@ -126,7 +139,7 @@
     <NavLi>
       <!-- Right-side Buttons (Login & Sign Up) -->
       <div class="flex md:order-2 space-x-2 mt-2 lg:-mt-2 btn-lgn-signup">
-        <Button size="sm" style="background-color: #2447F9;">
+        <Button on:click={() => (hidden4 = false)} size="sm" style="background-color: #2447F9;">
           <span class="login">Login</span>
         </Button>
         <Button size="sm" color="primary">
@@ -136,6 +149,53 @@
     </NavLi>
   </NavUl>
 </Navbar>
+
+
+<Drawer transitionType="fly" {transitionParams} bind:hidden={hidden4} id="sidebar4" class="w-96"  style="background-image: url({bg3});" >
+  <div class="flex items-center">
+    <h5 id="drawer-label" class="inline-flex items-center mb-6 text-base font-bold text-customWhite uppercase dark:text-gray-400">
+      <UserSolid class="w-5 h-5 me-2.5 text-customWhite" />Sign In
+    </h5>
+    <CloseButton on:click={() => (hidden4 = true)} class="mb-4 dark:text-white" />
+  </div>
+  <form action="#" class="mb-6">
+    <div class="mb-6">
+      <Label for="title" class="block mb-2 text-customWhite">Email</Label>
+      <Input id="email" name="email" required placeholder="johndoe@example.com"  />
+    </div>
+
+    <div class="mb-6">
+      <Label for="title" class="block mb-2 text-customWhite">Password</Label>
+      <Input type="password" id="password" name="password" required placeholder="******" />
+    </div>
+
+    <div class="mb-6">
+      <label for="title" class="block mb-2 text-customWhite">Login Sebagai</label>
+      <ul class="flex justify-between">
+        <li class="flex flex-col items-center">
+          <input type="radio" name="login_as" id="cb1" />
+          <label class="lbl_login_as" for="cb1">
+            <img src="{Teacher}" alt="teacher image" class="w-40" />
+            <span>Instructor</span>
+          </label>
+        </li>
+        <li class="flex flex-col items-center">
+          <input type="radio" name="login_as" id="cb2" />
+          <label class="lbl_login_as" for="cb2">
+            <img src="{Student}" alt="student image" class="w-40" />
+            <span>Student</span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    
+
+
+    <Button type="submit" class="w-full bg-customeBlue text-customWhite">
+      <LockOpenSolid class="w-3.5 h-3.5 me-2.5 text-customWhite" /> Sign In
+    </Button>
+  </form>
+</Drawer>
 
 <style>
   .limenu {
@@ -175,4 +235,66 @@
       }
     }
   }
+
+  ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+input[type="radio"][id^="cb"] {
+  display: none;
+}
+
+.lbl_login_as {
+  
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.lbl_login_as:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+.lbl_login_as img {
+
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
+
 </style>
